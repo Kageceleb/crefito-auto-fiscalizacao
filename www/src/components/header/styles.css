@@ -1,0 +1,8 @@
+.header {
+  display: flex;
+  justify-content: center;
+  height: 250px;
+}
+.banner {
+  display: block;
+}
