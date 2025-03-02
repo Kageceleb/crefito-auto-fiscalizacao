@@ -1,13 +1,17 @@
 import './App.css'
-import { Form } from './components/form'
+
+import { QuestionForm } from './components/questionsForm'
 import { Header } from './components/header'
 
+import { mockQuestions } from "../questions"
+
 function App() {
+  const questions = mockQuestions
 
   return (
     <div className="container">
       <Header />
-      <Form />
+      <QuestionForm questions={questions} />
     </div>
   )
 }
