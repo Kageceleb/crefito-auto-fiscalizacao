@@ -4,3 +4,7 @@
   height: 50px;
   min-height: 500px;
 }
+.question {
+  display: flex;
+  background-color: #f4f9ff;
+}

@@ -3,64 +3,59 @@ import { question } from "../../../types/questionType"
 import { Field, Form, Formik } from 'formik'
 import { useState } from 'react'
 
+type AnswerValues = { [key: number]: string }
+
 export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions }) => {
-    const [answers, setAnswers] = useState([]);
-    const [questionIndex, setQuestionIndex] = useState(0);
-    console.log(questions)
-    const handleChange = (questionId, answer) => {
-        setAnswers({ ...answers, [questionId]: answer });
-    };
-    const nextQuestion = () => {
-        if (questionIndex < questions.length - 1) {
-            setQuestionIndex(questionIndex + 1);
+    const [presentQuestionIndex, setPresentQuestionIndex] = useState(0);
+    const presentQuestion = questions[presentQuestionIndex];
+    const nextQuestion = (values: AnswerValues) => {
+        console.log(values);
+        let nextIndex = presentQuestionIndex + 1;
+        if (questions[nextIndex].dependsOn) {
+            const dependsOnAnswer: number = questions[nextIndex].dependsOn.questionId;
+            console.log(dependsOnAnswer)
+            if (values[dependsOnAnswer] !== questions[nextIndex].dependsOn.answer) {
+                setPresentQuestionIndex(nextIndex++);
+            } setPresentQuestionIndex(nextIndex)
+
+
+
+        } if (nextIndex < questions.length) {
+            setPresentQuestionIndex(nextIndex);
         }
     }
-    const presentQuestion = questions[questionIndex];
-    if (!presentQuestion) {
-        return <div>sem mais perguntas</div>;
-    }
+
+
     return (
         <div className='form'>
             <Formik
-                initialValues={{
-                    picked: '',
-                }}
-                onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 500));
-                    alert(JSON.stringify(values, null, 2));
+                initialValues={{}}
+                onSubmit={(values) => {
+                    console.log(values);
                 }}
             >
                 {({ values }) => (
                     <Form>
-                        {questions.map((question) => {
-                            if (question.dependsOn) {
-                                const dependentAnswer = answers[question.dependsOn.questionId];
-                                if (dependentAnswer === question.dependsOn.answer) {
-                                    return null; //não renderiza se não for atendida a condição
-                                }
-                            }
-                            return (
-                                <div key={question.id}>
-                                    <label>{question.question}</label>
-                                    {question.type === "radio" ? (
-                                        question.options.map((option) => (
-                                            <label key={option}>
-                                                <Field type="radio" name="picked" value={option} />
-                                                {option}
+                        <div key={presentQuestion.id}>
+                            <label className='question'>{presentQuestion.question}</label>
+                            {presentQuestion.type === "radio" ? (
+                                presentQuestion.options.map((option) => (
+                                    <label key={option}>
+                                        <Field type="radio" name={presentQuestion.id} value={option} />
+                                        {option}
 
-                                            </label>
-                                        ))
-                                    ) : (
-                                        <h1>not radio</h1>
-                                    )
-                                    }
-                                </div>
+                                    </label>
+                                ))
+                            ) : (
+                                <h1>not radio</h1>
                             )
-                        }
-                        )}
+                            }
+                        </div>
+                        <button type='button' onClick={() => nextQuestion(values)}>{presentQuestion.id} Próxima pergunta</button>
+
                     </Form>
                 )}
 
             </Formik>
-        </div>);
+        </div >);
 }

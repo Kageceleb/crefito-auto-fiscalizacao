@@ -36,6 +36,7 @@ export const mockQuestions: question[] = [
     "question": "Há designação, por parte do hospital, de um profissional fisioterapeuta como coordenador dos serviços de fisioterapia na UTI?",
     "type": "radio",
     "options": ["Sim", "Não"]
+
   },
   {
     "id": 7,
@@ -48,14 +49,14 @@ export const mockQuestions: question[] = [
     "question": "Os profissionais coordenadores, titulares e substitutos, possuem especialidade em terapia intensiva ou relacionada à assistência ao paciente grave?",
     "type": "radio",
     "options": ["Sim", "Não"],
-    "dependsOn": { questionId: 6, answer: "Sim" },
+    "dependsOn":
+      { questionId: 6, answer: "Sim" },
   },
   {
     "id": 9,
     "question": "A especialidade dos profissionais coordenadores, titulares e substitutos, é condizente com a modalidade de atuação da UTI (adulto, pediátrica ou neonatal)?",
     "type": "radio",
     "options": ["Sim", "Não"],
-    "dependsOn": { questionId: 8, answer: "Sim" },
   },
   {
     "id": 10,

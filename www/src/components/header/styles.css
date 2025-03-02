@@ -1,8 +1,10 @@
 .header {
   display: flex;
   justify-content: center;
-  height: 250px;
+  max-width: 420px;
 }
 .banner {
+  max-width: 100%;
+  height: auto;
   display: block;
 }
