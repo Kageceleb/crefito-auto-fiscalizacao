@@ -3,8 +3,5 @@ export type question = {
     question: string
     type: string
     options: string[]
-    dependsOn?: {
-        questionId: number
-        answer: string
-    }
+    shouldSkip?: (answers: { [key: number]: string }) => boolean
 }

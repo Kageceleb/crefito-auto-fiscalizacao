@@ -49,8 +49,7 @@ export const mockQuestions: question[] = [
     "question": "Os profissionais coordenadores, titulares e substitutos, possuem especialidade em terapia intensiva ou relacionada à assistência ao paciente grave?",
     "type": "radio",
     "options": ["Sim", "Não"],
-    "dependsOn":
-      { questionId: 6, answer: "Sim" },
+    "shouldSkip": (answers) => { return answers[6] === "Não" && answers[7] === "Não" },
   },
   {
     "id": 9,

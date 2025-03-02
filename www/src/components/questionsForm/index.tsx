@@ -11,21 +11,12 @@ export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions })
     const nextQuestion = (values: AnswerValues) => {
         console.log(values);
         let nextIndex = presentQuestionIndex + 1;
-        if (questions[nextIndex].dependsOn) {
-            const dependsOnAnswer: number = questions[nextIndex].dependsOn.questionId;
-            console.log(dependsOnAnswer)
-            if (values[dependsOnAnswer] !== questions[nextIndex].dependsOn.answer) {
-                setPresentQuestionIndex(nextIndex++);
-            } setPresentQuestionIndex(nextIndex)
+        const nextQuestion = questions[nextIndex];
+        if (!nextQuestion) return;
 
+        setPresentQuestionIndex((nextQuestion.shouldSkip?.(values)) ? nextIndex + 1 : nextIndex)
 
-
-        } if (nextIndex < questions.length) {
-            setPresentQuestionIndex(nextIndex);
-        }
     }
-
-
     return (
         <div className='form'>
             <Formik
