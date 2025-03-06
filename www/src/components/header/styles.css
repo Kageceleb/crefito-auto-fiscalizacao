@@ -1,6 +1,7 @@
 .header {
   display: flex;
   max-width: 420px;
+  height: 20vh;
 }
 .banner {
   max-width: 100%;

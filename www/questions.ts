@@ -1,6 +1,7 @@
 import { question } from "./types/questionType"
 
 export const mockQuestions: question[] = [
+
   {
     "id": 1,
     "question": "A UTI do hospital em questão possui registros junto ao CREFITO-5 e Vigilância Sanitária?",

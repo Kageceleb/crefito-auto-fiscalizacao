@@ -1,12 +1,13 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   background-color: pink;
   padding-top: 30px;
   padding-bottom: 20px;
-  height: 400px;
-  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 50vh;
 }
 .question {
   display: flex;
@@ -40,7 +41,12 @@ label {
   margin-top: 12px;
 }
 .nextQuestion {
+  position: absolute;
   border: 1px solid;
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 20px;
+  bottom: 25vh;
+  left: 30px;
+  right: 30px;
 }
