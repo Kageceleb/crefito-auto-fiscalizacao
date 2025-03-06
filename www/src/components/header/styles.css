@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  justify-content: center;
   max-width: 420px;
 }
 .banner {

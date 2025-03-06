@@ -1,7 +1,8 @@
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  max-width: 420px;
+  min-height: 100ve;
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;

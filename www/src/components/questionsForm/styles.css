@@ -1,10 +1,46 @@
 .form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: pink;
-  height: 50px;
-  min-height: 500px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height: 400px;
+  justify-content: space-between;
 }
 .question {
   display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 10px;
+  padding-bottom: 10px;
   background-color: #f4f9ff;
+  border: 1px solid;
+  border-radius: 10px;
+}
+.number {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.answers {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f4f9ff;
+  border: 1px solid;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+label {
+  margin-top: 12px;
+}
+.nextQuestion {
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px;
 }

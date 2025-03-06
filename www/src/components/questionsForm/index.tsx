@@ -13,12 +13,10 @@ export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions })
         let nextIndex = presentQuestionIndex + 1;
         const nextQuestion = questions[nextIndex];
         if (!nextQuestion) return;
-
         setPresentQuestionIndex((nextQuestion.shouldSkip?.(values)) ? nextIndex + 1 : nextIndex)
-
     }
     return (
-        <div className='form'>
+        <div >
             <Formik
                 initialValues={{}}
                 onSubmit={(values) => {
@@ -26,23 +24,29 @@ export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions })
                 }}
             >
                 {({ values }) => (
-                    <Form>
+                    <Form className='form'>
                         <div key={presentQuestion.id}>
-                            <label className='question'>{presentQuestion.question}</label>
-                            {presentQuestion.type === "radio" ? (
-                                presentQuestion.options.map((option) => (
-                                    <label key={option}>
-                                        <Field type="radio" name={presentQuestion.id} value={option} />
-                                        {option}
+                            <div className='question'>
+                                <label className='number'>Pergunta {presentQuestion.id}</label>
+                                <label >{presentQuestion.question}</label>
+                            </div>
+                            <div className='answers'>
+                                {presentQuestion.type === "radio" ? (
+                                    presentQuestion.options.map((option) => (
+                                        <label className='answer' key={option}>
+                                            <Field type="radio" name={presentQuestion.id} value={option} />
+                                            {option}
 
-                                    </label>
-                                ))
-                            ) : (
-                                <h1>not radio</h1>
-                            )
-                            }
+                                        </label>
+                                    ))
+                                ) : (
+                                    <h1>not radio</h1>
+                                )
+                                }
+                            </div>
+
                         </div>
-                        <button type='button' onClick={() => nextQuestion(values)}>{presentQuestion.id} Próxima pergunta</button>
+                        <button className='nextQuestion' type='button' onClick={() => nextQuestion(values)}> Próxima pergunta</button>
 
                     </Form>
                 )}
