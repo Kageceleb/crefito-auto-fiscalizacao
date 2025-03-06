@@ -8,21 +8,23 @@ type AnswerValues = { [key: number]: string }
 export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions }) => {
     const [presentQuestionIndex, setPresentQuestionIndex] = useState(-1);
     const presentQuestion = questions[presentQuestionIndex];
+    const nextIndex = presentQuestionIndex + 1;
     const nextQuestion = (values: AnswerValues) => {
         console.log(values);
-        let nextIndex = presentQuestionIndex + 1;
-        const nextQuestion = questions[nextIndex];
-        if (!nextQuestion) return;
+        const nextQuestion = questions[nextIndex] ;
+        if (!nextQuestion) setPresentQuestionIndex(presentQuestionIndex +1);
         setPresentQuestionIndex((nextQuestion.shouldSkip?.(values)) ? nextIndex + 1 : nextIndex)
     }
     return (
         presentQuestionIndex === -1 ?
-            <div className='form'>
-                < h1 > oi </h1 >
+            (<div className='form'>
+                < h1 > Texto inicial de apresentação </h1 >
                 <button className='nextQuestion' type='button' onClick={() => setPresentQuestionIndex(0)}> Começar </button>
-            </div>
+            </div>)
+            : nextIndex > questions.length ?
+            (<h1>resultado final</h1>)
             :
-            <div className='form'>
+            (<div className='form'>
                 <Formik
                     initialValues={{}}
                     onSubmit={(values) => {
@@ -33,7 +35,7 @@ export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions })
                         <Form >
                             <div key={presentQuestion.id}>
                                 <div className='question'>
-                                    <label className='number'>Pergunta {presentQuestion.id}</label>
+                                    <label className='number'> Pergunta {presentQuestion.id}</label>
                                     <label >{presentQuestion.question}</label>
                                 </div>
                                 <div className='answers'>
@@ -58,6 +60,6 @@ export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions })
                     )}
 
                 </Formik>
-            </div >
+            </div >)
     );
 }
