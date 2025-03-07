@@ -2,10 +2,11 @@ import './styles.css'
 import { question } from "../../../types/questionType"
 import { Field, Form, Formik } from 'formik'
 import { useState } from 'react'
+import { questionarieAnswer } from '../../../types/answerType'
 
 type AnswerValues = { [key: number]: string }
 
-export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions }) => {
+export const QuestionForm: React.FC<{ questions: question[], answers: questionarieAnswer[] }> = ({ questions, answers }) => {
     const [presentQuestionIndex, setPresentQuestionIndex] = useState(-1);
     const presentQuestion = questions[presentQuestionIndex];
     const nextIndex = presentQuestionIndex + 1;
@@ -22,7 +23,7 @@ export const QuestionForm: React.FC<{ questions: question[] }> = ({ questions })
                 <button className='nextQuestion' type='button' onClick={() => setPresentQuestionIndex(0)}> Começar </button>
             </div>)
             : nextIndex > questions.length ?
-            (<h1>resultado final</h1>)
+            (<h1>{answers[0].id}</h1>)
             :
             (<div className='form'>
                 <Formik
