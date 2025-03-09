@@ -12,11 +12,8 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
     const presentQuestion = questions[presentQuestionIndex];
     const nextIndex = presentQuestionIndex + 1;
     const nextQuestion = (values: AnswerValues) => {
-        console.log(values);
         const nextQuestion = questions[nextIndex];
         if (!nextQuestion) {
-            console.log(answers, values)
-
             const feedbacks = answers.filter((answer) => {
                 return (answer.shouldAnswer?.(values))
             })
@@ -43,7 +40,8 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                     <Formik
                         initialValues={{}}
                         onSubmit={(values) => {
-                            console.log(values);
+                            nextQuestion(values)
+                            console.log(values)
                         }}
                     >
                         {({ values }) => (
@@ -57,7 +55,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                         {presentQuestion.type === "radio" ? (
                                             presentQuestion.options.map((option) => (
                                                 <label className='answer' key={option}>
-                                                    <Field type="radio" name={presentQuestion.id} value={option} />
+                                                    <Field type="radio" name={presentQuestion.id} value={option} required />
                                                     {option}
 
                                                 </label>
@@ -69,7 +67,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                     </div>
 
                                 </div>
-                                <button className='nextQuestion' type='button' onClick={() => nextQuestion(values)}> Próxima pergunta</button>
+                                <button className='nextQuestion' type='submit' > Próxima pergunta</button>
 
                             </Form>
                         )}
