@@ -50,3 +50,11 @@ label {
   left: 30px;
   right: 30px;
 }
+.feedback {
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  line-height: 1.1;
+  text-align: left;
+  font-size: 1rem;
+}

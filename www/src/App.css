@@ -1,9 +1,9 @@
 #root {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  max-width: 575px;
-  max-height: 100ve;
+  margin: 2px;
+  max-width: 90dvw;
+  max-height: 90dvh;
   text-align: center;
   padding: 5px;
 }
