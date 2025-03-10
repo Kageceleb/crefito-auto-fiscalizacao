@@ -31,9 +31,9 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
             : nextIndex > questions.length ?
                 (<div className='feedback'>
                     {feedback.map((item) => {
+                        <h1>Orientações</h1>
                         return (
                             <>
-                                <h1>Orientação {item.id}</h1>
                                 <p>{item.answer}</p>
                             </>
                         )
@@ -49,7 +49,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                             console.log(values)
                         }}
                     >
-                        {({ values }) => (
+                        {() => (
                             <Form >
                                 <div key={presentQuestion.id}>
                                     <div className='question'>
