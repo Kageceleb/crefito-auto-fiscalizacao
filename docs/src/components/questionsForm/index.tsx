@@ -3,6 +3,7 @@ import { question } from "../../../types/questionType"
 import { Field, Form, Formik } from 'formik'
 import { useState } from 'react'
 import { questionarieAnswer } from '../../../types/answerType'
+import { ResetButton } from '../resetButton'
 
 type AnswerValues = { [key: number]: string }
 
@@ -21,8 +22,15 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
         }
         setPresentQuestionIndex((nextQuestion?.shouldSkip?.(values)) ? nextIndex + 1 : nextIndex)
     }
+    const resetForm = () => {
+        setPresentQuestionIndex(-1);
+        setFeedback([]);
+    };
 
     return (
+
+
+
         presentQuestionIndex === -1 ?
             (<div className='form'>
                 < h1 > Texto inicial de apresentação </h1 >
@@ -38,6 +46,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                             </>
                         )
                     })}
+                    <ResetButton onReset={resetForm} />
                 </div>
                 )
                 :
@@ -53,7 +62,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                             <Form >
                                 <div key={presentQuestion.id}>
                                     <div className='question'>
-                                        <label className='number'> Pergunta {presentQuestion.id}</label>
+                                        <label className='number'> PERGUNTA {presentQuestion.id}</label>
                                         <label >{presentQuestion.question}</label>
                                     </div>
                                     <div className='answers'>
@@ -72,12 +81,14 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                     </div>
 
                                 </div>
-                                <button className='nextQuestion' type='submit' > Próxima pergunta</button>
+                                <button className='nextQuestion' type='submit'> PRÓXIMA PERGUNTA</button>
+                                <ResetButton onReset={resetForm} />
 
                             </Form>
                         )}
 
                     </Formik>
-                </div >)
+                </div >
+                )
     );
 }

@@ -7,9 +7,19 @@ body,
   font-optical-sizing: auto;
   box-sizing: border-box;
   height: 100%; /* Important */
+  max-width: 500px;
 }
 
 #root {
   display: grid;
   grid-template-rows: 20% 60% 20%;
+}
+:root {
+  --white: "#FFFFFF";
+  --black: "#000000";
+  --roxo: "#4750ac";
+  --background: "#f4f9ff";
+  --header: "#e6e6e6";
+  --button: "#8b91ce";
+  --text: "#414141";
 }

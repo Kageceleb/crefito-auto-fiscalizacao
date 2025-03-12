@@ -1,12 +1,30 @@
 .footer {
-  background-color: var(--background);
+  background-color: #e5e5e5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 60% 40%;
 }
 p {
   padding: 0;
+  margin: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #414141;
+}
+.social-media {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   margin: 5px;
+}
+.doubts {
+  border: solid 1px black;
+  height: 160px;
+  margin-left: 30px;
+  margin-right: 10px;
+  border-radius: 10px;
 }

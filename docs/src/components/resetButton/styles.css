@@ -1,0 +1,16 @@
+#reset-button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: #673ab7;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 100; /* Ensure the button is on top of other content */
+}
+
+#reset-button:hover {
+  background-color: #da190b; /* Darker red on hover */
+}
