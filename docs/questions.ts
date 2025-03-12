@@ -57,6 +57,7 @@ export const mockQuestions: question[] = [
     "question": "A especialidade dos profissionais coordenadores, titulares e substitutos, é condizente com a modalidade de atuação da UTI (adulto, pediátrica ou neonatal)?",
     "type": "radio",
     "options": ["Sim", "Não"],
+    "shouldSkip": (answers) => { return answers[6] === "Não" && answers[7] === "Não" },
   },
   {
     "id": 10,

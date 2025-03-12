@@ -13,15 +13,36 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
     const presentQuestion = questions[presentQuestionIndex];
     const nextIndex = presentQuestionIndex + 1;
     const nextQuestion = (values: AnswerValues) => {
-        const nextQuestion = questions[nextIndex];
-        if (!nextQuestion) {
+        let nextIndexToCheck = nextIndex;
+        let nextQuestionToCheck = questions[nextIndexToCheck];
+
+        //Loop while testing the next Question
+        while (nextQuestionToCheck && nextQuestionToCheck.shouldSkip?.(values)) {
+            nextIndexToCheck++;
+            nextQuestionToCheck = questions[nextIndexToCheck];
+        }
+        if (nextIndexToCheck >= questions.length) {
             const feedbacks = answers.filter((answer) => {
                 return (answer.shouldAnswer?.(values))
             })
             setFeedback(feedbacks)
+            return
+        } else {
+            setPresentQuestionIndex(nextIndexToCheck)
         }
-        setPresentQuestionIndex((nextQuestion?.shouldSkip?.(values)) ? nextIndex + 1 : nextIndex)
-    }
+    };
+
+
+    // if (!nextQuestion) {
+    //     const feedbacks = answers.filter((answer) => {
+    //         return (answer.shouldAnswer?.(values))
+    //     })
+    //     setFeedback(feedbacks)
+    // }
+    // setPresentQuestionIndex((nextQuestion?.shouldSkip?.(values)) ? (
+    //     nextIndex + 1
+    // ) : nextIndex)
+    // }
     const resetForm = () => {
         setPresentQuestionIndex(-1);
         setFeedback([]);
