@@ -9,6 +9,7 @@
   padding-left: 10px;
   padding-right: 10px;
   height: 60vh;
+  align-items: center;
 }
 .question {
   display: flex;
@@ -46,15 +47,11 @@ label {
   margin-top: 12px;
 }
 .nextQuestion {
-  position: absolute;
   border: 1px solid;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 20px;
-  bottom: 25vh;
-  left: 30px;
-  right: 30px;
-  max-width: 400px;
+  margin-bottom: 5px;
+  width: 90%;
 }
 .feedback {
   padding: 16px;
