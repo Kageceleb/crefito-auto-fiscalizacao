@@ -1,11 +1,12 @@
 .footer {
+  background-color: var(--background);
   display: flex;
-  align-items: flex-end;
   flex-direction: column;
-  padding-left: 10px;
-  background-color: #f4f9ff;
-  border: 1px solid;
-  border-radius: 10px;
-  height: 25vh;
-  margin-right: 15px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+p {
+  padding: 0;
+  margin: 5px;
 }

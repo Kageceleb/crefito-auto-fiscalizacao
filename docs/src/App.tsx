@@ -1,4 +1,4 @@
-import './App.css'
+import './index.css'
 
 import { QuestionForm } from './components/questionsForm'
 import { Header } from './components/header'
@@ -12,11 +12,11 @@ function App() {
   const answers = mockAnswer
 
   return (
-    <div className="container">
+    < >
       <Header />
       <QuestionForm questions={questions} answers={answers} />
       <Footer />
-    </div>
+    </ >
   )
 }
 

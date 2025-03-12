@@ -1,10 +1,15 @@
-body {
+html,
+body,
+#root {
   margin: 0;
-  min-width: 320px;
-  max-width: 90dvw;
-  min-height: 90dvh;
+  padding: 0;
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+  box-sizing: border-box;
+  height: 100%; /* Important */
+}
+
+#root {
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
 }

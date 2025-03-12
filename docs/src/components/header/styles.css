@@ -1,7 +1,9 @@
 .header {
+  background-color: var(--background);
   display: flex;
-  max-width: 420px;
-  height: 20vh;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 .banner {
   max-width: 100%;
