@@ -62,7 +62,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                         {feedback.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <p>{item.answer}</p>
+                                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
                                 </div>
                             )
                         })}
