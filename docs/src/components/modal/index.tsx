@@ -13,6 +13,8 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     return (
         <div className="modal-overlay">
             <div className="modal">
+                Heres comes the new form
+
                 <button className="modal-close" onClick={onClose}>
                     X
                 </button>
