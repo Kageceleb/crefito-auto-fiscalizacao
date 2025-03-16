@@ -4,7 +4,9 @@ import { Field, Form, Formik } from 'formik'
 import { useState } from 'react'
 import { questionarieAnswer } from '../../../types/answerType'
 import { ResetButton } from '../resetButton'
-import { PresentationText } from '../presentationText'
+import { PresentationText } from '../text-presentation'
+import { MainOrientation } from '../text-mainOrientation'
+import { AllRight } from '../text-Allright'
 
 type AnswerValues = { [key: number]: string }
 
@@ -23,10 +25,6 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
             nextQuestionToCheck = questions[nextIndexToCheck];
         }
 
-        console.log({ "next Question to check": nextQuestionToCheck })
-        console.log(nextIndexToCheck)
-        console.log({ length: questions.length })
-
         if (nextIndexToCheck >= questions.length) {
             const feedbacks = answers.filter((answer) => {
                 return (answer.shouldAnswer?.(values))
@@ -36,7 +34,6 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
             return
         } else {
             setPresentQuestionIndex(nextIndexToCheck)
-
         }
     };
     const resetForm = () => {
@@ -51,18 +48,27 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                 <button className='nextQuestion' type='button' onClick={() => setPresentQuestionIndex(0)}> Começar </button>
             </div>)
             : presentQuestionIndex >= questions.length ?
-                (<div className='feedback'>
-                    <h2>Orientações</h2>
-                    {feedback.map((item, index) => {
-                        return (
-                            <div key={index}>
-                                <p>{item.answer}</p>
-                            </div>
-                        )
-                    })}
-                    <ResetButton onReset={resetForm} />
-                </div>
-                )
+                feedback.length === 0 ?
+                    (
+                        <>
+                            <AllRight />
+                            <ResetButton onReset={resetForm} />
+                        </>
+                    )
+                    :
+                    (<div className='feedback'>
+                        <h2>Orientações</h2>
+                        <MainOrientation />
+                        {feedback.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <p>{item.answer}</p>
+                                </div>
+                            )
+                        })}
+                        <ResetButton onReset={resetForm} />
+                    </div>
+                    )
                 :
                 (<div className='form'>
                     <Formik
@@ -80,17 +86,14 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                         <label >{presentQuestion.question}</label>
                                     </div>
                                     <div className='answers'>
-                                        {presentQuestion.type === "radio" ? (
-                                            presentQuestion.options.map((option) => (
-                                                <label className='answer' key={option}>
-                                                    <Field type="radio" name={presentQuestion.id} value={option} required />
-                                                    {option}
+                                        {presentQuestion.options.map((option) => (
+                                            <label className='answer' key={option}>
+                                                <Field type="radio" name={presentQuestion.id} value={option} required />
+                                                {option}
 
-                                                </label>
-                                            ))
-                                        ) : (
-                                            <h1>not radio</h1>
-                                        )
+                                            </label>
+                                        ))
+
                                         }
                                     </div>
 
