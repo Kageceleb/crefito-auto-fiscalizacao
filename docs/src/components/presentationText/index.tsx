@@ -1,7 +1,7 @@
 export const PresentationText: React.FC = () => {
     return (
         <div>
-            <h1>  Autofiscalização: <p> a ferramenta para garantir a regularidade da sua atuação!</p></h1>
+            <p>  Autofiscalização: a ferramenta para garantir a regularidade da sua atuação!</p>
 
             <p>
                 Se você é responsável técnico, sabe da importância de manter sua atuação e a da sua equipe dentro das normas. Com o Autofiscalizatório, você pode avaliar rapidamente se há alguma irregularidade e alertar seu gestor antes que problemas surjam.

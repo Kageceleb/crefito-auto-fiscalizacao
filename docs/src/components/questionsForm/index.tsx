@@ -4,6 +4,7 @@ import { Field, Form, Formik } from 'formik'
 import { useState } from 'react'
 import { questionarieAnswer } from '../../../types/answerType'
 import { ResetButton } from '../resetButton'
+import { PresentationText } from '../presentationText'
 
 type AnswerValues = { [key: number]: string }
 
@@ -21,50 +22,42 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
             nextIndexToCheck++;
             nextQuestionToCheck = questions[nextIndexToCheck];
         }
+
+        console.log({ "next Question to check": nextQuestionToCheck })
+        console.log(nextIndexToCheck)
+        console.log({ length: questions.length })
+
         if (nextIndexToCheck >= questions.length) {
             const feedbacks = answers.filter((answer) => {
                 return (answer.shouldAnswer?.(values))
             })
             setFeedback(feedbacks)
+            setPresentQuestionIndex(nextIndexToCheck)
             return
         } else {
             setPresentQuestionIndex(nextIndexToCheck)
+
         }
     };
-
-
-    // if (!nextQuestion) {
-    //     const feedbacks = answers.filter((answer) => {
-    //         return (answer.shouldAnswer?.(values))
-    //     })
-    //     setFeedback(feedbacks)
-    // }
-    // setPresentQuestionIndex((nextQuestion?.shouldSkip?.(values)) ? (
-    //     nextIndex + 1
-    // ) : nextIndex)
-    // }
     const resetForm = () => {
         setPresentQuestionIndex(-1);
         setFeedback([]);
     };
 
     return (
-
-
-
         presentQuestionIndex === -1 ?
             (<div className='form'>
-                < h1 > Texto inicial de apresentação </h1 >
+                <PresentationText />
                 <button className='nextQuestion' type='button' onClick={() => setPresentQuestionIndex(0)}> Começar </button>
             </div>)
-            : nextIndex > questions.length ?
+            : presentQuestionIndex >= questions.length ?
                 (<div className='feedback'>
-                    {feedback.map((item) => {
-                        <h1>Orientações</h1>
+                    <h2>Orientações</h2>
+                    {feedback.map((item, index) => {
                         return (
-                            <>
+                            <div key={index}>
                                 <p>{item.answer}</p>
-                            </>
+                            </div>
                         )
                     })}
                     <ResetButton onReset={resetForm} />
