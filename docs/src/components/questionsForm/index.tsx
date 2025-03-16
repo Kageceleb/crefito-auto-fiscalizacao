@@ -49,10 +49,6 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
     const closeModal = () => {
         setIsModalOpen(false);
     };
-    const handleModalLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault(); // Prevent the default link behavior (#)
-        openModal();
-    };
 
     useEffect(() => {
         // Add the openModal function to the window object
@@ -131,6 +127,8 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                     </Formik>
                     <Modal isOpen={IsModalOpen} onClose={closeModal}>
                         <h2>Calculadora</h2>
+                        <ResetButton onReset={resetForm} />
+
 
                     </Modal>
                 </div >
