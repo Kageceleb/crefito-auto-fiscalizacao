@@ -77,6 +77,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                     :
                     (<div className='feedback'>
                         <h2>Orientações</h2>
+                        <MainOrientation />
                         {feedback.map((item, index) => {
                             return (
                                 <div key={index}>
@@ -84,7 +85,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                 </div>
                             )
                         })}
-                        <MainOrientation />
+                        <p>Após a situação irregular ter sido devidamente comunicada internamente ao hospital, não havendo providências no sentido de reagularizar a questão, lembramos que é dever dos profissionais comunicar os fatos ao Conselho ou autoridade competente, conforme dispõe o art.7º do Código de Ética Profissional (Res. 424/2013 e Res. 425/2013).</p>
                         <ResetButton onReset={resetForm} />
                     </div>
                     )
