@@ -77,7 +77,6 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                     :
                     (<div className='feedback'>
                         <h2>Orientações</h2>
-                        <MainOrientation />
                         {feedback.map((item, index) => {
                             return (
                                 <div key={index}>
@@ -85,6 +84,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                 </div>
                             )
                         })}
+                        <MainOrientation />
                         <ResetButton onReset={resetForm} />
                     </div>
                     )
