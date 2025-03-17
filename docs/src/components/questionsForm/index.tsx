@@ -62,7 +62,7 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
 
     return (
         presentQuestionIndex === -1 ?
-            (<div className='form'>
+            (<div className='feedback'>
                 <PresentationText />
                 <button className='nextQuestion' type='button' onClick={() => setPresentQuestionIndex(0)}> Começar </button>
             </div>)
