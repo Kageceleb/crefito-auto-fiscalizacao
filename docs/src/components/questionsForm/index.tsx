@@ -8,15 +8,21 @@ import { PresentationText } from '../text-presentation'
 import { MainOrientation } from '../text-mainOrientation'
 import { AllRight } from '../text-Allright'
 import { Modal } from '../modal'
+import { calcQuestions } from '../../../calcQuestions'
+
 
 type AnswerValues = { [key: number]: string }
 
-export const QuestionForm: React.FC<{ questions: question[], answers: questionarieAnswer[] }> = ({ questions, answers }) => {
+
+export const QuestionForm: React.FC<{ questions: question[], calcQuestions: question[], answers: questionarieAnswer[] }> = ({ questions, answers }) => {
     const [presentQuestionIndex, setPresentQuestionIndex] = useState(-1);
     const [feedback, setFeedback] = useState<questionarieAnswer[]>([]);
     const [IsModalOpen, setIsModalOpen] = useState(false);
+    const [allAnswers, setAllAnswers] = useState<AnswerValues>({});
+
     const presentQuestion = questions[presentQuestionIndex];
     const nextIndex = presentQuestionIndex + 1;
+
     const nextQuestion = (values: AnswerValues) => {
         let nextIndexToCheck = nextIndex;
         let nextQuestionToCheck = questions[nextIndexToCheck];
@@ -26,7 +32,6 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
             nextIndexToCheck++;
             nextQuestionToCheck = questions[nextIndexToCheck];
         }
-
         if (nextIndexToCheck >= questions.length) {
             const feedbacks = answers.filter((answer) => {
                 return (answer.shouldAnswer?.(values))
@@ -46,8 +51,9 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
         setIsModalOpen(true);
     };
 
-    const closeModal = () => {
+    const closeModal = (modalAnswers: { [key: number]: string }) => {
         setIsModalOpen(false);
+        setAllAnswers({ ...allAnswers, ...modalAnswers });
     };
 
     useEffect(() => {
@@ -92,13 +98,14 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                 :
                 (<div className='form'>
                     <Formik
-                        initialValues={{}}
+                        initialValues={{ allAnswers }}
                         onSubmit={(values) => {
                             nextQuestion(values)
                             console.log(values)
                         }}
+                        enableReinitialize={true}
                     >
-                        {() => (
+                        {({ setFieldValue }) => (
                             <Form >
                                 <div key={presentQuestion.id}>
                                     <div className='question'>
@@ -109,28 +116,31 @@ export const QuestionForm: React.FC<{ questions: question[], answers: questionar
                                     <div className='answers'>
                                         {presentQuestion.options.map((option) => (
                                             <label className='answer' key={option}>
-                                                <Field type="radio" name={presentQuestion.id} value={option} required />
+                                                <Field
+                                                    type="radio"
+                                                    name={presentQuestion.id}
+                                                    value={option}
+                                                    required
+                                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                                        setFieldValue(`${presentQuestion.id}`, e.target.value);
+                                                        setAllAnswers({ ...allAnswers, [`${presentQuestion.id}`]: e.target.value });
+                                                    }}
+                                                />
                                                 {option}
 
                                             </label>
                                         ))
-
                                         }
                                     </div>
-
                                 </div>
                                 <button className='nextQuestion' type='submit'> PRÓXIMA PERGUNTA</button>
                                 <ResetButton onReset={resetForm} />
 
                             </Form>
                         )}
-
                     </Formik>
-                    <Modal isOpen={IsModalOpen} onClose={closeModal}>
+                    <Modal isOpen={IsModalOpen} onClose={closeModal} questions={calcQuestions}>
                         <h2>Calculadora</h2>
-                        <ResetButton onReset={resetForm} />
-
-
                     </Modal>
                 </div >
                 )
