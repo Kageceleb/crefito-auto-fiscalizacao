@@ -51,11 +51,14 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
         setIsModalOpen(true);
     };
 
-    const closeModal = (modalAnswers: { [key: number]: string }) => {
+    const closeModal = (modalAnswers: { [key: string]: string }) => {
         setIsModalOpen(false);
-        setAllAnswers({ ...allAnswers, ...modalAnswers });
+        const newAnswers: AnswerValues = {};
+        for (const key in modalAnswers) {
+            newAnswers[parseInt(key)] = modalAnswers[key];
+        }
+        setAllAnswers({ ...allAnswers, ...newAnswers });
     };
-
     useEffect(() => {
         // Add the openModal function to the window object
         window.openModal = openModal;
@@ -139,9 +142,7 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
                             </Form>
                         )}
                     </Formik>
-                    <Modal isOpen={IsModalOpen} onClose={closeModal} questions={calcQuestions}>
-                        <h2>Calculadora</h2>
-                    </Modal>
+                    <Modal isOpen={IsModalOpen} onClose={closeModal} questions={calcQuestions} />
                 </div >
                 )
     );
