@@ -26,6 +26,7 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
     const nextQuestion = (values: AnswerValues) => {
         let nextIndexToCheck = nextIndex;
         let nextQuestionToCheck = questions[nextIndexToCheck];
+        console.log({values: values})
 
         //Loop while testing the next Question
         while (nextQuestionToCheck && nextQuestionToCheck.shouldSkip?.(values)) {
@@ -103,8 +104,8 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
                     <Formik
                         initialValues={{ allAnswers }}
                         onSubmit={(values) => {
-                            nextQuestion(values)
-                            console.log(values)
+                            nextQuestion(values.allAnswers)
+                            console.log(values.allAnswers)
                         }}
                         enableReinitialize={true}
                     >
