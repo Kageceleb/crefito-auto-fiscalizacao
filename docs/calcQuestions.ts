@@ -4,21 +4,21 @@ export const calcQuestions: question[] = [
 
   {
     "id": 11,
-    "question": "A UTI do hospital em questão possui registros junto ao CREFITO-5 e Vigilância Sanitária?",
+    "question": "questão 1 calc",
     "type": "radio",
-    "options": ["Sim", "Não", "Não sei responder"]
+    "options": ["numero", "numero"]
   },
   {
     "id": 12,
-    "question": "Há normas e rotinas de procedimentos assistenciais e administrativos instituídos pelo hospital para a Unidade de Terapia Intensiva?",
+    "question": "questão 2 calc",
     "type": "radio",
-    "options": ["Sim", "Não"]
+    "options": ["numero", "numero"]
   },
   {
     "id": 13,
-    "question": "As normas e rotinas de procedimentos assistenciais e administrativos para a unidade estão disponíveis a todos os profissionais que trabalham na UTI?",
+    "question": "questão 3 calc",
     "type": "radio",
-    "options": ["Sim", "Não"]
+    "options": ["numero", "numero"]
   }
 ]
 
