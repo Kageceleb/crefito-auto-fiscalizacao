@@ -23,18 +23,18 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
     const presentQuestion = questions[presentQuestionIndex];
     const nextIndex = presentQuestionIndex + 1;
 
-    const nextQuestion = (values: AnswerValues) => {
+    const nextQuestion = (allAnswers: AnswerValues) => {
         let nextIndexToCheck = nextIndex;
         let nextQuestionToCheck = questions[nextIndexToCheck];
 
         //Loop while testing the next Question
-        while (nextQuestionToCheck && nextQuestionToCheck.shouldSkip?.(values)) {
+        while (nextQuestionToCheck && nextQuestionToCheck.shouldSkip?.(allAnswers)) {
             nextIndexToCheck++;
             nextQuestionToCheck = questions[nextIndexToCheck];
         }
         if (nextIndexToCheck >= questions.length) {
             const feedbacks = answers.filter((answer) => {
-                return (answer.shouldAnswer?.(values))
+                return (answer.shouldAnswer?.(allAnswers))
             })
             setFeedback(feedbacks)
             setPresentQuestionIndex(nextIndexToCheck)
@@ -103,7 +103,7 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
                     <Formik
                         initialValues={{ allAnswers }}
                         onSubmit={(values) => {
-                            nextQuestion(values)
+                            nextQuestion(allAnswers)
                             console.log(values)
                         }}
                         enableReinitialize={true}

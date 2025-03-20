@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css'; // You'll need to create this CSS file
-import { calcQuestions } from '../../../calcQuestions';
 import { Field, Form, Formik } from 'formik';
 import { question } from '../../../types/questionType';
 
