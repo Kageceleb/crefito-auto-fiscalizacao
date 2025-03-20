@@ -117,7 +117,7 @@ export const QuestionForm: React.FC<{ questions: question[], calcQuestions: ques
                                         ></label>
                                     </div>
                                     <div className='answers'>
-                                        {presentQuestion.options.map((option) => (
+                                        {presentQuestion.options?.map((option) => (
                                             <label className='answer' key={option}>
                                                 <Field
                                                     type="radio"

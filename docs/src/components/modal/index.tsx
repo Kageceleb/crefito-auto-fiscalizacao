@@ -3,11 +3,11 @@ import './styles.css'; // You'll need to create this CSS file
 import { Field, Form, Formik } from 'formik';
 import { question } from '../../../types/questionType';
 
-type AnswerValues = { [key: string]: string };
+type AnswerValues = { [key: string]: string|number };
 
 interface ModalProps {
     isOpen: boolean;
-    onClose: (answers: { [key: number]: string }) => void;
+    onClose: (answers: { [key: number]: string|number }) => void;
     questions: question[]
 }
 
@@ -37,7 +37,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, questions }) => {
                     onSubmit={handleSubmit}
                     enableReinitialize={true}
                 >
-                    {({ setFieldValue }) => (
+                    {({ values, setFieldValue }) => (
                         <Form>
                             {questions.map((question) => (
                                 <div key={question.id}>
@@ -47,23 +47,16 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, questions }) => {
                                         ></label>
                                     </div>
                                     <div className='answers'>
-                                        {question.options.map((option) => (
-                                            <label className='answer' key={option}>
-                                                <Field
-                                                    type="radio"
-                                                    name={`${question.id}`} // Convert to string
-                                                    value={option}
-                                                    required
-                                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                                        setFieldValue(`${question.id}`, e.target.value);
-                                                        setModalAnswers({ ...modalAnswers, [`${question.id}`]: e.target.value });
-                                                    }}
-                                                />
-                                                {option}
+                                        <Field
+                                            name={`${question.id}`}
+                                            type="number"
+                                            required
+                                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                                setFieldValue(`${question.id}`, e.target.value);
+                                                setModalAnswers({ ...modalAnswers, [`${question.id}`]: e.target.value });
+                                            }}
+                                        />
 
-                                            </label>
-                                        ))
-                                        }
                                     </div>
                                 </div>
                             ))}
