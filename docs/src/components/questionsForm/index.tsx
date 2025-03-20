@@ -11,7 +11,7 @@ import { Modal } from '../modal'
 import { calcQuestions } from '../../../calcQuestions'
 
 
-type AnswerValues = { [key: number]: string }
+type AnswerValues = { [key: string]: string  }
 
 
 export const QuestionForm: React.FC<{ questions: question[], calcQuestions: question[], answers: questionarieAnswer[] }> = ({ questions, answers }) => {

@@ -1,5 +1,5 @@
 export type questionarieAnswer = {
     id: number
-    answer: string
+    answer: string|number
     shouldAnswer?: (answers: { [key: number]: string }) => boolean
 }

@@ -3,11 +3,12 @@ import './styles.css'; // You'll need to create this CSS file
 import { Field, Form, Formik } from 'formik';
 import { question } from '../../../types/questionType';
 
-type AnswerValues = { [key: string]: string|number };
+// type AnswerValues = { [key: string]: string };
+type AnswerValues = { [key: string]: string };
 
 interface ModalProps {
     isOpen: boolean;
-    onClose: (answers: { [key: number]: string|number }) => void;
+    onClose: (answers: { [key: string]: string }) => void;
     questions: question[]
 }
 
@@ -37,10 +38,10 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, questions }) => {
                     onSubmit={handleSubmit}
                     enableReinitialize={true}
                 >
-                    {({ values, setFieldValue }) => (
+                    {({ setFieldValue }) => (
                         <Form>
                             {questions.map((question) => (
-                                <div key={question.id}>
+                                <div key={`${question.id}`}>
                                     <div className='question'>
                                         <label className='number'> PERGUNTA {question.id}</label>
                                         <label dangerouslySetInnerHTML={{ __html: question.question }}
@@ -53,7 +54,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, questions }) => {
                                             required
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                                 setFieldValue(`${question.id}`, e.target.value);
-                                                setModalAnswers({ ...modalAnswers, [`${question.id}`]: e.target.value });
+                                                setModalAnswers({ ...modalAnswers, [question.id]: e.target.value });
                                             }}
                                         />
 
