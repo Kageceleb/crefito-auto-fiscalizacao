@@ -9,12 +9,12 @@ export const calcQuestions: question[] = [
   },
   {
     "id": 12,
-    "question": "questão 2 calc",
+    "question": "Informe o número de profissionais fisioterapeutas na equipe de UTI:",
     "type": "number",
   },
   {
     "id": 13,
-    "question": "questão 3 calc",
+    "question": "Informe a carga horária diária (em horas) de cada profissional: ",
     "type": "number",
   }
 ]
