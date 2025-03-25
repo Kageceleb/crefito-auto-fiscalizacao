@@ -34,15 +34,15 @@ export const mockAnswer: questionarieAnswer[] = [
     "answer": "Conforme os dados fornecidos, identificamos: \n\n",
     "shouldAnswer": (answers) => {
       return (
-        ((Number(answers[10]) / Number(answers[11])) < 10) ||
-        ((Number(answers[11]) * Number(answers[12])) < 18)
+        ((Number(answers[11]) / Number(answers[12])) > 10) ||
+        ((Number(answers[12]) * Number(answers[13])) <= 17)
       );
     },
   },
   {
     "id": 8,
     "answer": "que o local está com um número de profissionais insuficiente para a quantidade de leitos ativos.",
-    "shouldAnswer": (answers) => { return (Number(answers[11]) / Number(answers[12]) >= 10) },
+    "shouldAnswer": (answers) => { return (Number(answers[11]) / Number(answers[12]) > 10) },
   },
   {
     "id": 9,
