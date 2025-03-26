@@ -61,7 +61,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, questions }) => {
                                     </div>
                                 </div>
                             ))}
-                            <button type="submit">Salvar</button>
+                            <button type="submit">Calcular</button>
                         </Form>
                     )}
                 </Formik>
