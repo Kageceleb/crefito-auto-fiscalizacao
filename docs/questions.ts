@@ -34,20 +34,20 @@ export const mockQuestions: question[] = [
   },
   {
     "id": 6,
-    "question": "Há designação, por parte do hospital, de um profissional fisioterapeuta como coordenador dos serviços de fisioterapia na UTI?",
+    "question": "Há designação, por parte do hospital, de um profissional fisioterapeuta como coordenador dos serviços de Fisioterapia na UTI?",
     "type": "radio",
     "options": ["Sim", "Não"]
 
   },
   {
     "id": 7,
-    "question": "Há profissional(is) igualmente habilidtado(s) previamente designado(s) para figurar como subistituto(s) na coordenação dos serviços de fisioterapia?",
+    "question": "Há profissional igualmente habilitado previamente designado para figurar como subistituto na coordenação dos serviços de Fisioterapia?",
     "type": "radio",
     "options": ["Sim", "Não"]
   },
   {
     "id": 8,
-    "question": "Os profissionais coordenadores, titulares e substitutos, possuem especialidade em terapia intensiva ou relacionada à assistência ao paciente grave?",
+    "question": "Os profissionais coordenadores, titulares e substitutos, possuem especialidade em Terapia Intensiva ou relacionada à assistência ao paciente grave?",
     "type": "radio",
     "options": ["Sim", "Não"],
     "shouldSkip": (answers) => { return answers[6] === "Não" && answers[7] === "Não" },
@@ -61,7 +61,7 @@ export const mockQuestions: question[] = [
   },
   {
     "id": 10,
-    "question": "O dimensionamento da equipe de fisioterapeutas está adequado? não sabe responder? <a href=\"#\"  onClick=\"openModal()\">teste aqui</a>",
+    "question": "O dimensionamento da equipe de fisioterapeutas está adequado? Não sabe responder? <a href=\"#\"  onClick=\"openModal()\">teste aqui</a>",
     "type": "radio",
     "options": ["Sim", "Não", "Não Sei"]
   }

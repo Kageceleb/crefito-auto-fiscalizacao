@@ -41,7 +41,7 @@ export const mockAnswer: questionarieAnswer[] = [
   },
   {
     "id": 8,
-    "answer": "que o local está com um número de profissionais insuficiente para a quantidade de leitos ativos.",
+    "answer": "Conforme os dados fornecidos, identificamos: \nque o local é com um número de profissionais insuficiente para a quantidade de leitos ativos. \nque o local está disponibilizando os atendimentos por um período menor do que o devido",
     "shouldAnswer": (answers) => { return (Number(answers[11]) / Number(answers[12]) > 10) },
   },
   {
