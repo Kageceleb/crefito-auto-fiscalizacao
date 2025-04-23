@@ -1,5 +1,5 @@
 import './styles.css'
-import banner from "../../assets/banner.jpg"
+import banner from "../../assets/banner.png"
 
 export function Header() {
     return (
